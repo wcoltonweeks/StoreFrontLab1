@@ -1,13 +1,13 @@
 ﻿@model StoreFrontLab1.DATA.EF.Painting
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Painting Details";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>Painting</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,6 +19,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaintingImg)
+        </dt>
+
+        <dd>
+            <img class="form-image" src="~/Content/img/paintings/@Model.PaintingImg" />
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>
 
@@ -27,19 +43,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PaintingImg)
+            @Html.DisplayNameFor(model => model.Size.SizeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PaintingImg)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Size.Size1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Size.Size1)
+            @Html.DisplayFor(model => model.Size.SizeName)
         </dd>
 
         <dt>
@@ -51,6 +59,7 @@
         </dd>
 
     </dl>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PaintingID }) |

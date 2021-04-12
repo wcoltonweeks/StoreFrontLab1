@@ -1,57 +1,122 @@
 ﻿@model IEnumerable<StoreFrontLab1.DATA.EF.Painting>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Original Paintings";
+}
+@section datatablesCSS{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PaintingTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaintingImg)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Size.Size1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status.StatusName)
-        </th>
-        <th></th>
-    </tr>
+@if (User.IsInRole("Admin"))
+{
+    <main>
+        <p>
+            @Html.ActionLink("Add Original Painting", "Create")
+        </p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaintingTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaintingImg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size.Size1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.StatusName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PaintingID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PaintingID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PaintingID })
-        </td>
-    </tr>
+        <table class="table" id="dataTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaintingTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaintingImg)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Size.SizeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status.StatusName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaintingTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <img class="form-image" src="~/Content/img/paintings/@item.PaintingImg " />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Size.SizeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status.StatusName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PaintingID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.PaintingID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PaintingID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </main>
 }
+else
+{
+    <main>
+        <div class="popular-product pt-50">
+            <div class="container-fluid">
 
-</table>
+
+                @foreach (var item in Model)
+                {
+
+
+
+                    <div class="popular-product pt-50">
+                        <div class="container-fluid">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="single-product mb-50">
+                                    <div class="location-img" id="original-image">
+                                        <img src="~/Content/img/paintings/@item.PaintingImg" alt="">
+                                    </div>
+                                    <div class="location-details">
+                                        @*<p><a href="product_details.html">Established fact that by the<br> readable content</a></p>*@
+                                        <a href="/Paintings/Details/@item.PaintingID" class="btn">@item.PaintingTitle</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </main>
+}
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}

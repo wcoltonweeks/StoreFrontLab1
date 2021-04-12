@@ -1,0 +1,23 @@
+﻿/*.form-group, .col-md-10, .form-control.text-box.single-line{
+   height: 2em;  
+}*/
+.form-control{
+    font-size: 1em;
+    height: 3em;
+}
+.form-image{
+    max-width: 280px;
+    padding: 1em;
+}
+#logo{
+    max-width: 16em;
+}
+.details-image{
+    max-width: 500px;
+}
+.painting-details{
+    text-align: center;
+}
+.popular-product .single-product .location-img img {
+    max-width: 80%;
+}

@@ -17,18 +17,19 @@ namespace StoreFrontLab1.DATA.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Painting()
         {
-            this.PaintingCopies = new HashSet<PaintingCopy>();
+            this.Painting_Copies = new HashSet<Painting_Copy>();
         }
     
         public int PaintingID { get; set; }
         public string PaintingTitle { get; set; }
         public int SizeID { get; set; }
-        public decimal Price { get; set; }
         public int StatusID { get; set; }
+        public string Description { get; set; }
         public string PaintingImg { get; set; }
+        public decimal Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaintingCopy> PaintingCopies { get; set; }
+        public virtual ICollection<Painting_Copy> Painting_Copies { get; set; }
         public virtual Size Size { get; set; }
         public virtual Status Status { get; set; }
     }

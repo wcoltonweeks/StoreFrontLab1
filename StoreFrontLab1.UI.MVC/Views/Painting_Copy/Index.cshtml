@@ -1,0 +1,116 @@
+﻿@model IEnumerable<StoreFrontLab1.DATA.EF.Painting_Copy>
+
+@{
+    ViewBag.Title = "Canvas Prints";
+}
+@section datatablesCSS{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
+}
+
+
+
+@if (User.IsInRole("Admin"))
+{
+    <main>
+        <h2>@ViewBag.Title</h2>
+        <p>
+            @Html.ActionLink("Add Canvas Print", "Create")
+        </p>
+        <table class="table" id="dataTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Painting.PaintingImg)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Painting)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Size)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img class="form-image" src="~/Content/img/paintings/@item.Painting.PaintingImg " />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Painting.PaintingTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Size.SizeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status.StatusName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CopyID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.CopyID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CopyID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </main>
+}
+else
+{
+    <main>
+        <h2>@ViewBag.Title</h2>
+        <div class="new-arrival">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+                                <div class="popular-img">
+                                    <img src="~/Content/img/paintings/@item.Painting.PaintingImg" alt="">
+                                    <div class="favorit-items">
+                                        <!-- <span class="flaticon-heart"></span> -->
+                                        <img src="~/Content/img/gallery/favorit-card.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="popular-caption">
+                                    <h3><a href="/Painting_Copy/Details/@item.PaintingID">@item.Painting.PaintingTitle</a></h3>
+
+                                    <span>@string.Format($"{item.Price:c}")</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </main>
+}
+
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}

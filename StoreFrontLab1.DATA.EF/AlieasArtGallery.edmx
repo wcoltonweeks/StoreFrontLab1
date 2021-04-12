@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AllieasArtGalleryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Painting Copies">
+          <Key>
+            <PropertyRef Name="CopyID" />
+          </Key>
+          <Property Name="CopyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaintingID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="SizeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paintings">
+          <Key>
+            <PropertyRef Name="PaintingID" />
+          </Key>
+          <Property Name="PaintingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaintingTitle" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="SizeID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="120" />
+          <Property Name="PaintingImg" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sizes">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SizeName" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Painting Copies_Paintings">
+          <End Role="Paintings" Type="Self.Paintings" Multiplicity="1" />
+          <End Role="Painting Copies" Type="Self.Painting Copies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paintings">
+              <PropertyRef Name="PaintingID" />
+            </Principal>
+            <Dependent Role="Painting Copies">
+              <PropertyRef Name="PaintingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Painting Copies_Sizes">
+          <End Role="Sizes" Type="Self.Sizes" Multiplicity="1" />
+          <End Role="Painting Copies" Type="Self.Painting Copies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="Painting Copies">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Painting Copies_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Painting Copies" Type="Self.Painting Copies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Painting Copies">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paintings_Sizes">
+          <End Role="Sizes" Type="Self.Sizes" Multiplicity="1" />
+          <End Role="Paintings" Type="Self.Paintings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="Paintings">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paintings_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Paintings" Type="Self.Paintings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Paintings">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AllieasArtGalleryModelStoreContainer">
+          <EntitySet Name="Painting Copies" EntityType="Self.Painting Copies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paintings" EntityType="Self.Paintings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sizes" EntityType="Self.Sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Painting Copies_Paintings" Association="Self.FK_Painting Copies_Paintings">
+            <End Role="Paintings" EntitySet="Paintings" />
+            <End Role="Painting Copies" EntitySet="Painting Copies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Painting Copies_Sizes" Association="Self.FK_Painting Copies_Sizes">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Painting Copies" EntitySet="Painting Copies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Painting Copies_Status" Association="Self.FK_Painting Copies_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Painting Copies" EntitySet="Painting Copies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paintings_Sizes" Association="Self.FK_Paintings_Sizes">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Paintings" EntitySet="Paintings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paintings_Status" Association="Self.FK_Paintings_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Paintings" EntitySet="Paintings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AllieasArtGalleryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Painting_Copy">
+          <Key>
+            <PropertyRef Name="CopyID" />
+          </Key>
+          <Property Name="CopyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaintingID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="SizeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Painting" Relationship="Self.FK_Painting_Copies_Paintings" FromRole="Painting_Copies" ToRole="Paintings" />
+          <NavigationProperty Name="Size" Relationship="Self.FK_Painting_Copies_Sizes" FromRole="Painting_Copies" ToRole="Sizes" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Painting_Copies_Status" FromRole="Painting_Copies" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Painting">
+          <Key>
+            <PropertyRef Name="PaintingID" />
+          </Key>
+          <Property Name="PaintingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaintingTitle" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SizeID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="PaintingImg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Painting_Copies" Relationship="Self.FK_Painting_Copies_Paintings" FromRole="Paintings" ToRole="Painting_Copies" />
+          <NavigationProperty Name="Size" Relationship="Self.FK_Paintings_Sizes" FromRole="Paintings" ToRole="Sizes" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Paintings_Status" FromRole="Paintings" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SizeName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Painting_Copies" Relationship="Self.FK_Painting_Copies_Sizes" FromRole="Sizes" ToRole="Painting_Copies" />
+          <NavigationProperty Name="Paintings" Relationship="Self.FK_Paintings_Sizes" FromRole="Sizes" ToRole="Paintings" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Painting_Copies" Relationship="Self.FK_Painting_Copies_Status" FromRole="Status" ToRole="Painting_Copies" />
+          <NavigationProperty Name="Paintings" Relationship="Self.FK_Paintings_Status" FromRole="Status" ToRole="Paintings" />
+        </EntityType>
+        <Association Name="FK_Painting_Copies_Paintings">
+          <End Role="Paintings" Type="Self.Painting" Multiplicity="1" />
+          <End Role="Painting_Copies" Type="Self.Painting_Copy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paintings">
+              <PropertyRef Name="PaintingID" />
+            </Principal>
+            <Dependent Role="Painting_Copies">
+              <PropertyRef Name="PaintingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Painting_Copies_Sizes">
+          <End Role="Sizes" Type="Self.Size" Multiplicity="1" />
+          <End Role="Painting_Copies" Type="Self.Painting_Copy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="Painting_Copies">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Painting_Copies_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Painting_Copies" Type="Self.Painting_Copy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Painting_Copies">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paintings_Sizes">
+          <End Role="Sizes" Type="Self.Size" Multiplicity="1" />
+          <End Role="Paintings" Type="Self.Painting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="Paintings">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paintings_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Paintings" Type="Self.Painting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Paintings">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AllieasArtGalleryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Painting_Copies" EntityType="Self.Painting_Copy" />
+          <EntitySet Name="Paintings" EntityType="Self.Painting" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <AssociationSet Name="FK_Painting_Copies_Paintings" Association="Self.FK_Painting_Copies_Paintings">
+            <End Role="Paintings" EntitySet="Paintings" />
+            <End Role="Painting_Copies" EntitySet="Painting_Copies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Painting_Copies_Sizes" Association="Self.FK_Painting_Copies_Sizes">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Painting_Copies" EntitySet="Painting_Copies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Painting_Copies_Status" Association="Self.FK_Painting_Copies_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Painting_Copies" EntitySet="Painting_Copies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paintings_Sizes" Association="Self.FK_Paintings_Sizes">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Paintings" EntitySet="Paintings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paintings_Status" Association="Self.FK_Paintings_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Paintings" EntitySet="Paintings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AllieasArtGalleryModelStoreContainer" CdmEntityContainer="AllieasArtGalleryEntities">
+          <EntitySetMapping Name="Painting_Copies">
+            <EntityTypeMapping TypeName="AllieasArtGalleryModel.Painting_Copy">
+              <MappingFragment StoreEntitySet="Painting Copies">
+                <ScalarProperty Name="CopyID" ColumnName="CopyID" />
+                <ScalarProperty Name="PaintingID" ColumnName="PaintingID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paintings">
+            <EntityTypeMapping TypeName="AllieasArtGalleryModel.Painting">
+              <MappingFragment StoreEntitySet="Paintings">
+                <ScalarProperty Name="PaintingID" ColumnName="PaintingID" />
+                <ScalarProperty Name="PaintingTitle" ColumnName="PaintingTitle" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PaintingImg" ColumnName="PaintingImg" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="AllieasArtGalleryModel.Size">
+              <MappingFragment StoreEntitySet="Sizes">
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="AllieasArtGalleryModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

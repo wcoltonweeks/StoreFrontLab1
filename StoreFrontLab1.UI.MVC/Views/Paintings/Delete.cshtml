@@ -1,14 +1,14 @@
 ﻿@model StoreFrontLab1.DATA.EF.Painting
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Original Painting";
 }
 
-<h2>Delete</h2>
+<h2>@ViewBag.Title</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Painting</h4>
+  
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,11 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt>
@@ -36,11 +36,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Size.Size1)
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Size.Size1)
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size.SizeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size.SizeName)
         </dd>
 
         <dt>
@@ -57,7 +65,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88b5dd3f94d649dfb2b6ab73d7e03177" Name="Diagram1">
+        <EntityTypeShape EntityType="AllieasArtGalleryModel.Painting_Copy" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AllieasArtGalleryModel.Painting" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AllieasArtGalleryModel.Size" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AllieasArtGalleryModel.Status" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="AllieasArtGalleryModel.FK_Painting_Copies_Paintings" ManuallyRouted="false" />
+        <AssociationConnector Association="AllieasArtGalleryModel.FK_Painting_Copies_Sizes" ManuallyRouted="false" />
+        <AssociationConnector Association="AllieasArtGalleryModel.FK_Painting_Copies_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="AllieasArtGalleryModel.FK_Paintings_Sizes" ManuallyRouted="false" />
+        <AssociationConnector Association="AllieasArtGalleryModel.FK_Paintings_Status" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

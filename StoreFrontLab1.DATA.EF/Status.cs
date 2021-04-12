@@ -17,7 +17,7 @@ namespace StoreFrontLab1.DATA.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Status()
         {
-            this.PaintingCopies = new HashSet<PaintingCopy>();
+            this.Painting_Copies = new HashSet<Painting_Copy>();
             this.Paintings = new HashSet<Painting>();
         }
     
@@ -25,7 +25,7 @@ namespace StoreFrontLab1.DATA.EF
         public string StatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaintingCopy> PaintingCopies { get; set; }
+        public virtual ICollection<Painting_Copy> Painting_Copies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Painting> Paintings { get; set; }
     }
